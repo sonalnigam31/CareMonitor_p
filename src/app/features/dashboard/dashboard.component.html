@@ -1,0 +1,11 @@
+ <mat-toolbar color="primary">
+      <span>My App</span>
+      <span class="spacer"></span>
+      <span class="welcome">Welcome, {{ userEmail }}</span>
+      <button mat-button routerLink="/dashboard/list">List</button>
+      <button mat-icon-button (click)="logout()">
+         Logout
+      </button>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet> </div>
