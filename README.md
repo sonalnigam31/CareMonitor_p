@@ -1,59 +1,110 @@
-# AngularMockApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.3.
+Angular Mock App – Setup Guide
 
-## Development server
+This is a complete guide to configuring this application using Angular (Standalone Components), Angular Material, Signals, and the ngrx Signal Store.
 
-To start a local development server, run:
+Prerequisites
 
-```bash
+Node.js installed
+
+Angular CLI installed:
+
+npm install -g @angular/cli
+
+
+Git installed (for cloning the repository)
+
+1. Clone the Existing Project
+# Clone your repository
+git clone https://github.com/sonalnigam31/CareMonitor_p.git
+
+# Navigate into the project folder
+cd CareMonitor_p
+
+2. Install Project Dependencies
+# Remove existing node_modules (optional, for a clean setup)
+rm -rf node_modules
+del /s /q node_modules  # Windows PowerShell
+
+# Remove package-lock.json if necessary
+del package-lock.json  # Windows PowerShell
+rm package-lock.json  # Mac/Linux
+
+# Install all dependencies
+npm install
+
+3. Reconfigure Angular Material (if needed)
+
+If Angular Material was not fully configured, you can run:
+
+ng add @angular/material
+4. Install Additional Libraries
+# Cookie Service and ngrx Signals Store
+npm install ngx-cookie-service @ngrx/signals
+
+
+⚠️ Make sure to install compatible versions with your Angular version:
+
+Angular 19 → ngx-cookie-service@16
+
+Angular 20 → ngx-cookie-service@20
+
+Angular 21 → ngx-cookie-service@21
+
+5. Run the Application
+# Serve the Angular application locally
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+Open your browser at http://localhost:4200.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-```bash
-ng generate component component-name
-```
+Project Architecture & Technical Approach
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+This application is built as a modern, modular Single Page Application (SPA) using Angular with Standalone Components. The focus is on scalability, clean architecture, reactive state management, and an overall smooth developer and user experience.
 
-```bash
-ng generate --help
-```
+1. Architectural Pattern — Feature-Based & Modular
 
-## Building
+The project follows a feature-driven architecture, organized by domain rather than technical layers. This keeps code maintainable and easy to scale as features grow.
 
-To build the project run:
+Core Layer: Contains global singletons such as AuthService, MockApiService, and route guards. Loaded once at the root.
 
-```bash
-ng build
-```
+Features Layer: Each domain (Login, Dashboard, List) is isolated and self-contained.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Lazy Loading: Dashboard and List are lazy-loaded to reduce bundle size and improve initial load performance.
 
-## Running unit tests
+2. State Management — NgRx Signal Store
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+The project uses @ngrx/signals for lightweight, reactive state management instead of heavy Redux boilerplate.
 
-```bash
-ng test
-```
+3. Authentication & Route Security & UI/UX
 
-## Running end-to-end tests
+Cookie-based session authentication using a custom CookieService.
 
-For end-to-end (e2e) testing, run:
+AuthGuard monitors navigation and protects private routes (/dashboard).
 
-```bash
-ng e2e
-```
+Unauthorized users are redirected to the Login page.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Built with Angular Material for accessible and consistent UI elements.
 
-## Additional Resources
+User feedback built-in (loading spinners, error notifications).
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+All UI states driven directly by reactive Signals.
+
+
+✨ Summary
+
+This project demonstrates a clean and scalable approach to building modern Angular applications using:
+
+Standalone architecture
+
+Lazy loading
+
+Reactive state management (Signals + NgRx Signal Store)
+
+Simulated backend APIs
+
+Cookie-based auth with route protection
+
+Responsive, user-focused UI
